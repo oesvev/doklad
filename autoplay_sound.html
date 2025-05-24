@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Автоматическое воспроизведение аудио</title>
+</head>
+<body>
+
+    <!-- 
+        Аудио тег:
+        - id="myAudio": для доступа к элементу из JavaScript
+        - src="fast-stony.mp3": ОБЯЗАТЕЛЬНО замените "fast-stony.mp3" на правильный путь к вашему аудиофайлу. 
+          Если файл находится в той же папке, что и ваш HTML-файл, то "fast-stony.mp3" будет работать.
+          Если файл находится в подпапке "audio", то путь будет "audio/fast-stony.mp3".
+        - autoplay: пытается начать воспроизведение автоматически
+    -->
+    <audio id="myAudio" src="fast-stony.mp3" autoplay loop></audio>
+
+    <script>
+        window.onload = function() {
+            const audio = document.getElementById('myAudio');
+
+            // Устанавливаем громкость на максимум (значение от 0.0 до 1.0)
+            audio.volume = 1.0; 
+
+            // Пытаемся запустить воспроизведение. 
+            // Обратите внимание: современные браузеры могут блокировать автоматическое воспроизведение звука
+            // без взаимодействия пользователя со страницей.
+            audio.play().catch(error => {
+                // Это сообщение появится только в консоли разработчика, если воспроизведение будет заблокировано.
+                console.log("Автоматическое воспроизведение звука заблокировано браузером:", error);
+            });
+        };
+    </script>
+
+</body>
+</html>
